@@ -1,0 +1,12 @@
+.addBtn {
+    background-color: #306C95;
+    color: #fff; 
+    border-radius: 0;
+    &::before {
+        content: '+  ';
+    } 
+    &:hover{
+        color: #fff;
+        opacity: 0.9;
+    }
+}
