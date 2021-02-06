@@ -1,9 +1,10 @@
 import React from "react";
 import "./styles.scss";
-import {useSelector} from "react-redux"
-
+import {useSelector} from "react-redux" 
+import ActionButton from '../ActionButton/ActionButton';
+import {Link} from 'react-router-dom';
 const CompaniesListing = () => { 
-  const transCompanies = useSelector((state) => state.companies);
+  const transCompanies = useSelector((state) => state.mainReducer.companies); 
   return(<div className="listing-wrapper">
     <table class="table">
       <thead>
@@ -21,7 +22,7 @@ const CompaniesListing = () => {
             <td>{item.ID}</td>
             <td>{item.Name}</td>
             <td>{item.TotalFleet}</td>
-            {item.CanEdit?<td><button>edit</button></td> :<td>not editable</td> }
+            {item.CanEdit?<td><Link to={`/form/${item.ID}`}>Edit</Link> </td> : <td>not editable</td> }
 
           </tr>
          )

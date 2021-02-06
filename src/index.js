@@ -1,25 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Routes from "./router";
 import reportWebVitals from './reportWebVitals';
 import mainReducer from './redux/reducer' 
-import {Provider} from 'react-redux'
+import {Provider} from 'react-redux';  
+import { reducer as formReducer } from 'redux-form';
 import{
   createStore,
-  compose
-}  from 'redux'
+  compose, 
+  combineReducers
+}  from 'redux' 
 const enhancers = compose(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-); 
-const store = createStore(mainReducer,enhancers);
+);  
+const rootReducer = combineReducers({mainReducer,form: formReducer })
+const store = createStore(rootReducer,enhancers);
 
 ReactDOM.render(
-  <React.StrictMode> 
+  <React.Fragment> 
       <Provider store={store}>
-    <App /> 
+    <Routes /> 
     </Provider>
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById('root')
 );
 
